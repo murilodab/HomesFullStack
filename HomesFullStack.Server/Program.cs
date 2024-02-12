@@ -1,5 +1,7 @@
 using HomesFullStack.Server.Data;
 using HomesFullStack.Server.Helpers;
+using HomesFullStack.Server.Services;
+using HomesFullStack.Server.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomesFullStack.Server
@@ -24,6 +26,9 @@ namespace HomesFullStack.Server
             o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
 
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+            //Register Services
+            builder.Services.AddScoped<IHomeService, HomeService>();
 
             var app = builder.Build();
 

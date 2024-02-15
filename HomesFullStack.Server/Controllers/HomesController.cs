@@ -35,7 +35,7 @@ namespace HomesFullStack.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Home>> GetHome(int id)
         {
-            var home = await _context.Homes.FindAsync(id);
+            var home = await _homeService.GetHomeByIdAsync(id);
 
             if (home == null)
             {
@@ -55,23 +55,7 @@ namespace HomesFullStack.Server.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(home).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HomeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _homeService.EditHomeAsync(home);       
 
             return NoContent();
         }
@@ -81,8 +65,7 @@ namespace HomesFullStack.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Home>> PostHome(Home home)
         {
-            _context.Homes.Add(home);
-            await _context.SaveChangesAsync();
+            await _homeService.AddNewHomeAsync(home);
 
             return CreatedAtAction("GetHome", new { id = home.Id }, home);
         }
@@ -91,14 +74,7 @@ namespace HomesFullStack.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHome(int id)
         {
-            var home = await _context.Homes.FindAsync(id);
-            if (home == null)
-            {
-                return NotFound();
-            }
-
-            _context.Homes.Remove(home);
-            await _context.SaveChangesAsync();
+            await _homeService.DeleteHomeByIdAsync(id);
 
             return NoContent();
         }

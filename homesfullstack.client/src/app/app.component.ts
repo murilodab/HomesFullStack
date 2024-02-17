@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HousingLocation } from './housinglocation';
 
 interface WeatherForecast {
   date: string;
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getForecasts();
+    this.getAllHousingLocations();
   }
 
   getForecasts() {
@@ -32,6 +33,14 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  url = 'http://localhost:5149/Homes'
+
+ async getAllHousingLocations(): Promise<HousingLocation[]> {
+    const data = await fetch(this.url);
+    return await data.json() ?? [];
+  }
+
 
   title = 'homesfullstack.client';
 }

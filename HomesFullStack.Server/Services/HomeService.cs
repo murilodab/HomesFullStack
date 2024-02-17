@@ -107,5 +107,10 @@ namespace HomesFullStack.Server.Services
                 throw;
             }
         }
+
+        Task<Home> IHomeService.EditHomeAsync(Home home)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

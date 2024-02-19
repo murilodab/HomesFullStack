@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HousingLocation } from '../housinglocation';
 import { HousingService } from '../housing.service';
 
@@ -7,31 +7,30 @@ import { HousingService } from '../housing.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  housingLocationList: HousingLocation[] = [];
-  housingService: HousingService = inject(HousingService);
-  filteredLocationList: HousingLocation[] = [];
+export class HomeComponent implements OnInit {
 
-  constructor() {
-    this.housingService
-      .getAllHousingLocations()
-      .then((housingLocationList: HousingLocation[]) => {
-        this.housingLocationList = housingLocationList;
-        this.filteredLocationList = housingLocationList;
-      });
+  houses: HousingLocation[] = [];
 
+  constructor(private housingService: HousingService) { }
+
+  ngOnInit(): void {
+    this.getHousingLocations();
   }
 
-  filterResults(text: string) {
-    if (!text) {
-      this.filteredLocationList = this.housingLocationList;
-      return;
-    }
-
-    this.filteredLocationList = this.housingLocationList.filter(
-      (housingLocation) =>
-        housingLocation?.city.toLowerCase().includes(text.toLowerCase()) //Filter by City
-    );
-
+  getHousingLocations(): void {
+    this.housingService.getAllHousingLocations().subscribe(houses => this.houses = houses.slice(1, 5));
   }
+
+  //filterResults(text: string) {
+  //  if (!text) {
+  //    this.filteredLocationList = this.housingLocationList;
+  //    return;
+  //  }
+
+  //  this.filteredLocationList = this.housingLocationList.filter(
+  //    (housingLocation) =>
+  //      housingLocation?.city.toLowerCase().includes(text.toLowerCase()) //Filter by City
+  //  );
+
 }
+

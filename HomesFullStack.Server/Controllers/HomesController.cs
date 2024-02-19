@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using HomesFullStack.Server.Data;
 using HomesFullStack.Server.Models;
 using HomesFullStack.Server.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace HomesFullStack.Server.Controllers
 {
+    [EnableCors("AlowCors")]
     [Route("api/[controller]")]
     [ApiController]
     public class HomesController : ControllerBase

@@ -1,6 +1,6 @@
 @HomesFullStack.Server_HostAddress = http://localhost:5149
 
-GET {{HomesFullStack.Server_HostAddress}}/weatherforecast/
+GET {{HomesFullStack.Server_HostAddress}}/homesfullstack/
 Accept: application/json
 
 ###

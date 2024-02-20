@@ -1,14 +1,17 @@
-<section>
-  <form>
-    <input type="text" placeholder="Filter by city" #filter />
-    <button class="primary"
-          type="button"
-         >
-      Search
-    </button>
+<section class="Search">
+  <form class="row mb-3">
+    <div class="col-12 d-flex ">
+      <input type="text" class="form-control" placeholder="Filter" #filter />
+      <button class="ms-2 btn btn-primary btn"
+              type="button">
+        Search
+      </button>
+    </div>
   </form>
 </section>
-<section class="results">
- <app-housing-location *ngFor="let house of houses"
-                     [housingLocation] = "house"></app-housing-location>
+
+<section class="row">
+      <app-housing-location *ngFor="let house of houses"
+                            [housingLocation]="house" class="col-6">
+      </app-housing-location>
 </section>

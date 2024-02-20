@@ -1,8 +1,15 @@
-<section class="listing">
-  <h2 class="listing-heading">{{housingLocation.Name}}</h2>
-  <p class="listing-location">
-    {{housingLocation.city}},
-    {{housingLocation.state}}
-  </p>
-  <a>Learn More</a>
-</section>
+
+
+  <div class="card">
+    <img [src]=" housingLocation.imageBase64 ? housingLocation.imageBase64 : getDefaultImage() " />
+  </div>
+    <h2 class="listing-heading">{{housingLocation.name}}</h2>
+    <p class="listing-location">
+      {{housingLocation.city}},
+      {{housingLocation.state}}
+    </p>
+    <a class="btn btn-sm btn-primary">Learn More</a>
+  
+
+  
+

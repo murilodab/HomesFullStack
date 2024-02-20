@@ -8,4 +8,8 @@ import { HousingLocation } from '../housinglocation';
 })
 export class HousingLocationComponent {
   @Input() housingLocation!: HousingLocation;
+
+  getDefaultImage(): string {
+    return 'assets/placeholder-image.jpg';
+  }
 }

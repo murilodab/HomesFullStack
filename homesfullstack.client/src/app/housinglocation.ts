@@ -1,8 +1,9 @@
 export interface HousingLocation {
 
   id: number;
-  Name: string;
+  name: string;
   description: string;
+  imageBase64: string;
   city: string;
   state: string;
   wifi: boolean;

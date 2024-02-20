@@ -12,7 +12,7 @@ namespace HomesFullStack.Server
         {
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = ConnectionHelper.GetConnectionString(builder.Configuration) ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            var AllowCors = "_allowCors";
+            
 
             // Add services to the container.
             builder.Services.AddControllers();
@@ -34,15 +34,10 @@ namespace HomesFullStack.Server
             //Add CORS
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy(name: AllowCors,
-                    policy =>
-                    {
-                        policy.WithOrigins("https://localhost:4200")
-                                            .AllowAnyHeader()
-                                            .AllowAnyMethod();
-                    });
-
-
+                options.AddPolicy("homesFullStack", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
             });
 
             var app = builder.Build();
@@ -57,7 +52,7 @@ namespace HomesFullStack.Server
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(AllowCors);
+            app.UseCors("homesFullStack");
 
             app.UseHttpsRedirection();
 

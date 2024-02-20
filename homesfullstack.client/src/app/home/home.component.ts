@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   getHousingLocations(): void {
-    this.housingService.getAllHousingLocations().subscribe(houses => this.houses = houses.slice(1, 5));
+    this.housingService.getAllHousingLocations().subscribe(houses => this.houses = houses);
   }
 
   //filterResults(text: string) {

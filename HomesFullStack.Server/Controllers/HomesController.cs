@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Cors;
 
 namespace HomesFullStack.Server.Controllers
 {
-    [EnableCors("AlowCors")]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class HomesController : ControllerBase

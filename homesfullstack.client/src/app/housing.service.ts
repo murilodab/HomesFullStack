@@ -35,9 +35,16 @@ export class HousingService {
 
   getAllHousingLocations(): Observable<HousingLocation[]> {
 
-    
+    //fetch(this.apiUrl)
+    //  .then(response => {
+    //    if (!response.ok) {
+    //      throw new Error(`HTTP error! Status: ${response.status}`);
+    //    }
 
-    return this.http.get<HousingLocation[]>(this.apiUrl, {headers: this.headers});
+    //    return response.json();
+    //  })
+
+    return this.http.get<HousingLocation[]>(this.apiUrl);
 
   }
 
